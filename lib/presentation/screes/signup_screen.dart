@@ -6,28 +6,17 @@ import 'package:vfsocial/logic/blocs/auth/auth_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vfsocial/logic/providers/user_provider.dart';
 import 'package:vfsocial/presentation/component/components.dart';
-import 'package:vfsocial/presentation/screes/signup_screen.dart';
+import 'package:vfsocial/presentation/screes/login_screen.dart';
 
-enum AuthMode { Signup, Login }
-
-class ShopLoginScreen extends StatelessWidget {
-  static const routeName = '/auth';
-  ShopLoginScreen({Key? key}) : super(key: key);
+class SignupScreen extends StatelessWidget {
+  SignupScreen({Key? key}) : super(key: key);
   var formKey = GlobalKey<FormState>();
   var emailControl = TextEditingController();
   var passwordControl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return /* BlocProvider(
-      create: (context) => AuthBloc(UserProvider()),
-      child: BlocConsumer<AuthBloc, AuthState>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
-        builder: (context, state) {
-          return*/
-        Scaffold(
+    return Scaffold(
       appBar: AppBar(),
       body: Center(
         child: SingleChildScrollView(
@@ -86,6 +75,23 @@ class ShopLoginScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
+                      height: 24,
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.visiblePassword,
+                      onFieldSubmitted: (String value) {
+                        print(value);
+                      },
+                      controller: passwordControl,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        labelText: "Confirm Password",
+                        prefixIcon: Icon(Icons.password),
+                        suffixIcon: Icon(Icons.remove_red_eye),
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    SizedBox(
                       height: 30,
                     ),
                     Container(
@@ -97,7 +103,7 @@ class ShopLoginScreen extends StatelessWidget {
                           print(passwordControl.text);
                         },
                         child: Text(
-                          "LOGIN",
+                          "SignUP",
                           style: TextStyle(
                             fontSize: 30,
                             color: Colors.white,
@@ -111,15 +117,15 @@ class ShopLoginScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Don't have an account?"),
+                        Text("I have an account"),
                         SizedBox(
                           width: 1,
                         ),
                         TextButton(
                           onPressed: () {
-                            navigateTo(context, SignupScreen());
+                            navigateTo(context, ShopLoginScreen());
                           },
-                          child: Text("Register"),
+                          child: Text("Login"),
                         ),
                       ],
                     ),
@@ -133,9 +139,3 @@ class ShopLoginScreen extends StatelessWidget {
     );
   }
 }
-      /*  },
-      ),
-    );
-  }
-}
-*/

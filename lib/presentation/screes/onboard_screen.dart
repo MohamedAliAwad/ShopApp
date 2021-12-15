@@ -41,12 +41,22 @@ class _OnboardScreenState extends State<OnboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white70,
+          elevation: 200,
           actions: [
             TextButton(
-                onPressed: () {
-                  navigateAndFinish(context, ShopLoginScreen());
-                },
-                child: Text("Skip")),
+              onPressed: () {
+                navigateAndFinish(context, ShopLoginScreen());
+              },
+              child: Text(
+                "Skip",
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
           ],
         ),
         body: Padding(
